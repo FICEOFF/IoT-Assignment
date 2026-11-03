@@ -10,7 +10,7 @@ PREFIX = "67070164"
 DASH_HOST = "mqtt-dashboard.com"
 LORA_HOST = "lora.kmitl.ac.th"
 
-TUNNEL_URL = "" # Server tunnl.gg URL
+TUNNEL_URL = "" # Tunnel URL without https://
 
 APP_ID = "" # Application ID
 DEV_EUI = "" # Device EUI
