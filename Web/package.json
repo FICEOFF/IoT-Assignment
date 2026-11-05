@@ -1,8 +1,12 @@
 {
 	"name": "web",
-	"private": true,
 	"version": "0.0.1",
+	"private": true,
 	"type": "module",
+	"imports": {
+		"#lib": "./src/lib/index.js",
+		"#lib/*": "./src/lib/*"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -17,10 +21,6 @@
 		"svelte": "^5.57.2",
 		"tailwindcss": "^4.3.0",
 		"vite": "^8.3.0"
-	},
-	"imports": {
-		"#lib": "./src/lib/index.js",
-		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
 		"hono": "^4.13.16",
