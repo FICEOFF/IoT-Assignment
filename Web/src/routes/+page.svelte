@@ -159,12 +159,12 @@
                 <div class="text-sm text-gray-500">Light</div>
                 <div class="mt-3">
                     {#if light === 'bright'}
-                        <span class="rounded-full bg-amber-100 px-4 py-1 text-lg font-bold text-amber-700">
-                            ☀️ Day
+                        <span class="rounded-full bg-amber-200 px-4 py-1 text-lg font-bold text-gray-800">
+                            ☀️ Is Bright
                         </span>
                     {:else if light === 'dark'}
-                        <span class="rounded-full bg-slate-800 px-4 py-1 text-lg font-bold text-white">
-                            🌙 Night
+                        <span class="rounded-full bg-slate-600 px-4 py-1 text-lg font-bold text-white">
+                            🌙 Is Dark
                         </span>
                     {:else}
                         <span class="text-3xl font-bold">—</span>
