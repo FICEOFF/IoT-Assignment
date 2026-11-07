@@ -70,8 +70,8 @@ def on_lora_message(client, userdata, msg):
         state["temperature"] = temperature
         state["humidity"] = humidity
         state["lora_time"] = time.time()
-    dash.publish(TOPIC_TEMP, str(temperature), qos=1, retain=True)
-    dash.publish(TOPIC_HUMID, str(humidity), qos=1, retain=True)
+    dash.publish(TOPIC_TEMP, str(temperature), qos=1)
+    dash.publish(TOPIC_HUMID, str(humidity), qos=1)
     print(f"[RECEIVED] LoRa uplink: {temperature} °C, {humidity} %RH")
 
 def sensor_loop():
@@ -80,8 +80,8 @@ def sensor_loop():
         with state_lock:
             state["distance"] = distance
         if distance is not None:
-            dash.publish(TOPIC_DISTANCE, str(distance))
-        dash.publish(TOPIC_LIGHT, light.read_light(), retain=True)
+            dash.publish(TOPIC_DISTANCE, str(distance), qos=1)
+        dash.publish(TOPIC_LIGHT, light.read_light(), qos=1)
         time.sleep(1)
 
 dash.on_connect = on_dash_connect
