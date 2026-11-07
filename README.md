@@ -187,7 +187,7 @@ do_send() ───► read SHT31 ───► pack 4 bytes ───► LMIC_se
 
 - **Pi เป็นศูนย์กลาง:** ทุกอย่างผ่าน Pi เว็บต่อ broker เดียว ไม่ต้องรู้จัก LoRa และ ChatGPT ต่อกับ Pi ที่เดียว
 - **สถานะไฟมีแหล่งความจริงเดียว** คือ `PREFIX/rgb/state` (retained) ทั้ง ChatGPT และเว็บสั่งผ่านฟังก์ชัน `apply_rgb` ตัวเดียวกัน เมื่อเปิดเว็บใหม่จึงเห็นสีปัจจุบันทันที
-- **ใช้ retained message กับค่าที่เปลี่ยนไม่บ่อย** (สีไฟ, แสง, อุณหภูมิ, ความชื้น) ผู้ subscribe ใหม่จึงได้ค่าล่าสุดทันที ส่วนระยะห่างไม่ retained เพราะเปลี่ยนทุกวินาที และเว็บใช้การที่ไม่มีค่าใหม่เกิน 5 วินาทีเป็นสัญญาณว่า Pi ไม่ออนไลน์
+- **ใช้ retained message กับค่าที่เปลี่ยนไม่บ่อย** คือ สีไฟ ผู้ subscribe ใหม่จึงได้ค่าล่าสุดทันที ส่วนระยะห่าง, แสง, อุณหภูมิ, ความชื้นไม่ retained เพราะเปลี่ยนแปลงตลอด และเว็บใช้การที่ไม่มีค่าใหม่เกิน 5 วินาทีเป็นสัญญาณว่า Pi ไม่ออนไลน์
 - **Tool ตอบจากค่าที่เก็บไว้:** การวัดทำใน thread แยก tool จึงไม่ต้องรอการวัดและไม่แย่งใช้เซนเซอร์กัน
 - **แยก broker 2 ตัว:** `lora.kmitl.ac.th` เป็นฝั่งเครือข่าย LoRa (อ่านอย่างเดียว) ส่วน `mqtt-dashboard.com` เป็นของระบบเราเอง
 - **Payload LoRa เล็กมาก (4 ไบต์)** เพื่อลดเวลาส่งในอากาศ (airtime)
@@ -204,9 +204,9 @@ Broker ทั้งสองใช้พอร์ต 1883 ไม่ต้อง�
 | `PREFIX/rgb/set` | เว็บ → Pi | `red` `yellow` `green` `cyan` `blue` `magenta` `white` `off` | ไม่ |
 | `PREFIX/rgb/state` | Pi → เว็บ | สีปัจจุบัน หรือ `off` | ใช่ |
 | `PREFIX/distance` | Pi → เว็บ | ระยะห่าง (cm) ทุก 1 วินาที | ไม่ |
-| `PREFIX/light` | Pi → เว็บ | `bright` หรือ `dark` | ใช่ |
-| `PREFIX/temp` | Pi → เว็บ | อุณหภูมิ (°C) จาก LoRa | ใช่ |
-| `PREFIX/humid` | Pi → เว็บ | ความชื้น (%RH) จาก LoRa | ใช่ |
+| `PREFIX/light` | Pi → เว็บ | `bright` หรือ `dark` | ไม่ |
+| `PREFIX/temp` | Pi → เว็บ | อุณหภูมิ (°C) จาก LoRa | ไม่ |
+| `PREFIX/humid` | Pi → เว็บ | ความชื้น (%RH) จาก LoRa | ไม่ |
 
 **`lora.kmitl.ac.th`:** Pi subscribe `application/<APP_ID>/device/<DEV_EUI>/event/up`
 
